@@ -3,9 +3,19 @@
 
 var spawn = require('child_process').spawn;
 
-var pkg = process.argv[2];
+/********************************** CLI args **********************************/
 
-// Collect information on package
+var argv = require('minimist')(process.argv.slice(2));
+
+if (argv.h || argv.help) help_exit();
+
+var parseable = !!(argv.p || argv.parseable);
+var pkg = (argv['_'].length ? argv['_'][0] : false) || argv.p || argv.parseable;
+
+if (!pkg) help_exit();
+
+/*********************** Collect information on package ***********************/
+
 var uses = spawn('brew', ['uses', '--installed', pkg]);
 var deps = spawn('brew', ['deps', pkg]);
 
@@ -27,13 +37,14 @@ deps.on('close', () => {
   if (uses_finished && deps_finished) data_collected();
 });
 
-// Called when child processes end
+/*************************** Child processes ended ****************************/
+
 var data_collected = function () {
   uses_data = uses_data.trim().split('\n');
   deps_data = deps_data.trim().split('\n');
 
   var str = '', max = false;
-  if (uses_data.length > 0) {
+  if (uses_data.length > 0 && uses_data[0] !== '') {
     max = uses_data.reduce(function (len, c) {
       return c.length > len ? c.length : len;
     }, 0) + 2;
@@ -51,7 +62,7 @@ var data_collected = function () {
     }, str);
   }
 
-  if (deps_data.length > 0) {
+  if (deps_data.length > 0 && deps_data[0] !== '') {
     // Compute length of spaces prefix
     var prefix_spaces = '';
     if (!max) {
@@ -80,6 +91,21 @@ var data_collected = function () {
   if (str !== '') {
     console.log('\n' + str);
   } else {
-    console.log('none');
+    console.log(pkg, 'has no uses or dependencies.');
   }
+}
+
+function help_exit() {
+  console.log(
+    '\n' +
+    '  Usage: brew tree [options] <package>\n' +
+    '\n' +
+    '  See a tree of uses and dependencies for your brew packages\n' +
+    '\n' +
+    '  Options:\n' +
+    '\n' +
+    '    -p, --parseable \t Parseable output\n' +
+    '    -h, --help      \t Print this help\n'
+  );
+  process.exit(0);
 }

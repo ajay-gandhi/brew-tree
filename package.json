@@ -6,7 +6,9 @@
   "bin": {
     "brew-tree": "brew-tree"
   },
-  "dependencies": {},
+  "dependencies": {
+    "minimist": "^1.2.0"
+  },
   "devDependencies": {},
   "scripts": {
     "test": "node brew-tree"
