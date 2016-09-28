@@ -11,6 +11,6 @@ $ npm install -g ajay-gandhi/brew-tree
 ## Usage
 
 ```
-$ brew list # see a list of your installed packages
-$ brew tree aspcud
+$ brew list          # see a list of your installed packages
+$ brew tree aspcud   # view tree for aspcud package
 ```

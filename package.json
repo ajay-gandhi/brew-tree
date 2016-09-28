@@ -3,12 +3,10 @@
   "version": "0.0.1",
   "description": "See a tree of uses and dependencies for your brew packages",
   "main": "brew-tree",
-  "dependencies": {
-    "treeify": "^1.0.1"
-  },
   "bin": {
     "brew-tree": "brew-tree"
   },
+  "dependencies": {},
   "devDependencies": {},
   "scripts": {
     "test": "node brew-tree"
