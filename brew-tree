@@ -1,0 +1,13 @@
+#!/bin/bash
+SELECTED_PKG="$1"
+if [ -z $SELECTED_PKG ]; then
+  echo "Please select a package:"
+  brew list
+  # BREW_PKGS=$(brew list)
+  # for pkg in $BREW_PKGS; do
+  #     echo "$pkg"
+  # done
+else
+  echo "$SELECTED_PKG is used by: " $(brew uses --installed "$SELECTED_PKG")
+  echo "$SELECTED_PKG depends on: " $(brew deps "$SELECTED_PKG")
+fi
