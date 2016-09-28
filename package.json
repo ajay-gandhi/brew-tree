@@ -1,0 +1,31 @@
+{
+  "name": "brew-tree",
+  "version": "0.0.1",
+  "description": "See a tree of uses and dependencies for your brew packages",
+  "main": "brew-tree",
+  "dependencies": {
+    "treeify": "^1.0.1"
+  },
+  "bin": {
+    "brew-tree": "brew-tree"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "node brew-tree"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ajay-gandhi/brew-tree.git"
+  },
+  "keywords": [
+    "homebrew",
+    "tree",
+    "dependencies"
+  ],
+  "author": "Ajay Gandhi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ajay-gandhi/brew-tree/issues"
+  },
+  "homepage": "https://github.com/ajay-gandhi/brew-tree#readme"
+}
