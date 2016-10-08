@@ -40,6 +40,13 @@ deps.on('close', () => {
 /*************************** Child processes ended ****************************/
 
 var data_collected = function () {
+  if (parseable) {
+    console.log(uses_data.trim());
+    console.log(pkg);
+    console.log(deps_data.trim());
+    process.exit(0);
+  }
+
   uses_data = uses_data.trim().split('\n');
   deps_data = deps_data.trim().split('\n');
 
