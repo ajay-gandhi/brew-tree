@@ -1,6 +1,6 @@
 {
   "name": "brew-tree",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "See a tree of uses and dependencies for your brew packages",
   "main": "brew-tree",
   "bin": {
